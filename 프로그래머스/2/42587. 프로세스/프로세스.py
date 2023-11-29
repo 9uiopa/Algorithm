@@ -17,9 +17,8 @@ def solution(priorities, location):
                 valid = False
                 break
         if valid:
-            answer.append(cur_process)    
-    print(answer)
+            answer.append(cur_process)  
+            
     for idx in range(len(answer)):
         if answer[idx][0] == location:
-            print(idx+1)
             return idx+1  
