@@ -1,24 +1,26 @@
 from collections import deque
 
 def solution(priorities, location):
-    pri = []
-    answer = []
-    for i in range(len(priorities)):
-        pri.append((i,priorities[i]))
+    ans = 0
+    q = deque([(i,x) for i,x in enumerate(priorities)])
     
-    q = deque()
-    q.extend(pri)
     while q:
-        valid = True
-        cur_process = q.popleft()
+        process = q.popleft()
+        ok = True
         for p in q:
-            if cur_process[1] < p[1]:
-                q.append(cur_process)
-                valid = False
+            if p[1]> process[1]:
+                q.append(process)
+                ok = False
                 break
-        if valid:
-            answer.append(cur_process)  
+        if ok:
+            ans += 1
+            if process[0]==location:
+                return ans
             
-    for idx in range(len(answer)):
-        if answer[idx][0] == location:
-            return idx+1  
+        
+
+        
+        
+    
+    
+ 
