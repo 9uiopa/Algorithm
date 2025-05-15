@@ -23,7 +23,7 @@ def execute():
         curr = coms[r][c]
         if curr == '@' :
             return True
-        elif curr == ';.' : pass
+        elif curr == '.' : pass
         elif curr in change_di.keys() : # 방향키 명령어 처리
             di = change_di[curr]
         elif curr == '_' :
@@ -46,7 +46,7 @@ def execute():
             for d in direction:
                 nr, nc = get_next(r,c,d)
                 q.append((nr,nc,memo,d))
-                continue
+            continue
         nr,nc = get_next(r,c,di)
         q.append((nr,nc,memo,di))
     return False
