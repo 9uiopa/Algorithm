@@ -13,7 +13,7 @@ def dfs(small, big):
     global ans
     flag = can_make(big)
     result = float('inf')
-
+ 
     if flag:
         result = len(str(small)) + 1 + flag
         if small * big == x:
@@ -23,7 +23,7 @@ def dfs(small, big):
         for s, b in get_factor(big):
             temp = dfs(s, b)
             if temp:
-                result = len(str(small)) + 1 + temp
+                result = min(result, len(str(small)) + 1 + temp)
                 if small * big == x:
                     ans = min(ans, result)
     return result if result != float('inf') else 0
