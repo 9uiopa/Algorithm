@@ -9,23 +9,24 @@ def get_factor(num): # 인수 구하기
             factors.append((small,big))
     return factors
           
-def dfs(small, big): # 인수를 만들어낼 수 있는지 확인하고 수행 횟수 반환
+def dfs(small, big):
     global ans
     flag = can_make(big)
     result = float('inf')
-    if flag :
-        if small * big == x: # 최상단 함수일때,
-            ans = min(ans,  len(str(small))+1+flag)
-        else :  return len(str(small))+1+flag
-    else : # can not make 'big'
-        for s,b in get_factor(big):
-            temp = dfs(s,b)
-            if temp :
-                if small * big == x: # 최상단 함수일때,
-                    ans = min(ans,  len(str(small))+1+temp)
-                else :
-                    return len(str(small))+1+ temp
-    return 0
+
+    if flag:
+        result = len(str(small)) + 1 + flag
+        if small * big == x:
+            ans = min(ans, result)
+        return result
+    else:
+        for s, b in get_factor(big):
+            temp = dfs(s, b)
+            if temp:
+                result = len(str(small)) + 1 + temp
+                if small * big == x:
+                    ans = min(ans, result)
+    return result if result != float('inf') else 0
 
 def can_make(num):  # 문자열 합치기로 만들 수 있는지 판단, 가능하면 문자열크기 반환
     s = str(num)
